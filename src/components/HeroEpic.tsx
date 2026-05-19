@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Zap, Sparkles } from 'lucide-react'
+import { ArrowRight, Sparkles } from 'lucide-react'
 
 export default function HeroEpic() {
   const containerVariants = {
@@ -24,19 +24,18 @@ export default function HeroEpic() {
 
   return (
     <section className="min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative overflow-hidden" id="accueil">
-      {/* Éléments géométriques animés */}
       <motion.div
-        animate={{ rotate: 360, scale: [1, 1.2, 1] }}
+        animate={{ rotate: 360 }}
         transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
         className="absolute top-20 right-20 w-40 h-40 border-2 border-[#00ff88]/20 rounded-full animate-pulse-crazy"
       />
       <motion.div
-        animate={{ rotate: -360, scale: [1, 0.8, 1] }}
+        animate={{ rotate: -360 }}
         transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
         className="absolute bottom-40 left-10 w-32 h-32 border-2 border-[#ff006e]/20 rounded-full"
       />
       <motion.div
-        animate={{ y: [0, 50, 0], rotate: 360 }}
+        animate={{ y: [0, 50, 0] }}
         transition={{ duration: 20, repeat: Infinity }}
         className="absolute top-1/2 right-1/3 w-20 h-20 border-2 border-[#00d4ff]/30 rounded-lg opacity-50"
       />
@@ -47,7 +46,6 @@ export default function HeroEpic() {
         animate="visible"
         className="max-w-5xl mx-auto text-center z-10"
       >
-        {/* Badge avec anim folle */}
         <motion.div
           variants={itemVariants}
           animate={{ y: [0, -10, 0] }}
@@ -59,19 +57,18 @@ export default function HeroEpic() {
               animate={{ rotate: 360 }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              <Zap size={18} className="text-[#00ff88]" />
+              ⚡
             </motion.div>
             <span className="text-sm font-medium text-[#00ff88] animate-flicker">Portfolio E5 BTS SIO</span>
           </div>
         </motion.div>
 
-        {/* Titre principal DINGUE */}
         <motion.h1
           variants={itemVariants}
           className="font-serif text-6xl md:text-8xl font-bold mb-6 leading-tight"
         >
           <motion.span
-            animate={{ y: [0, -20, 0], rotate: [0, 5, -5, 0] }}
+            animate={{ y: [0, -20, 0] }}
             transition={{ duration: 3, repeat: Infinity }}
             className="block text-white"
           >
@@ -86,7 +83,6 @@ export default function HeroEpic() {
           </motion.span>
         </motion.h1>
 
-        {/* Sous-titre */}
         <motion.p
           variants={itemVariants}
           className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed"
@@ -123,15 +119,14 @@ export default function HeroEpic() {
           </motion.span>
         </motion.p>
 
-        {/* CTA Buttons avec animations dingues */}
         <motion.div
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
         >
           <motion.button
-            whileHover={{ scale: 1.15, rotate: 5, boxShadow: '0 0 60px rgba(0, 255, 136, 0.8)' }}
-            whileTap={{ scale: 0.9, rotate: -5 }}
-            className="px-10 py-4 bg-gradient-to-r from-[#00ff88] to-[#00d4ff] text-[#0a0e27] font-bold rounded-xl flex items-center gap-3 hover:shadow-2xl transition-all relative overflow-hidden group"
+            whileHover={{ scale: 1.15, boxShadow: '0 0 60px rgba(0, 255, 136, 0.8)' }}
+            whileTap={{ scale: 0.9 }}
+            className="px-10 py-4 bg-gradient-to-r from-[#00ff88] to-[#00d4ff] text-[#0a0e27] font-bold rounded-xl flex items-center gap-3 hover:shadow-2xl transition-all"
           >
             <motion.span
               animate={{ x: [0, 5, 0] }}
@@ -147,7 +142,7 @@ export default function HeroEpic() {
             </motion.div>
           </motion.button>
           <motion.button
-            whileHover={{ scale: 1.15, rotate: -5, boxShadow: '0 0 60px rgba(255, 0, 110, 0.8)' }}
+            whileHover={{ scale: 1.15, boxShadow: '0 0 60px rgba(255, 0, 110, 0.8)' }}
             whileTap={{ scale: 0.9 }}
             className="px-10 py-4 border-2 border-[#00ff88] text-[#00ff88] font-bold rounded-xl hover:bg-[#00ff88]/20 transition-all animate-pulse-crazy"
           >
@@ -155,17 +150,16 @@ export default function HeroEpic() {
           </motion.button>
         </motion.div>
 
-        {/* Scroll indicator */}
         <motion.div
-          animate={{ y: [0, 15, 0], scale: [1, 1.2, 1] }}
+          animate={{ y: [0, 15, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
           className="flex justify-center gap-2"
         >
-          <motion.div className="text-[#00ff88] text-sm font-medium flex items-center gap-2">
-            <Sparkles size={18} className="animate-spin" />
+          <div className="text-[#00ff88] text-sm font-medium flex items-center gap-2">
+            <motion.span animate={{ rotate: 360 }} transition={{ duration: 3, repeat: Infinity }}>✨</motion.span>
             Scroll pour l'aventure
-            <Sparkles size={18} className="animate-spin" />
-          </motion.div>
+            <motion.span animate={{ rotate: 360 }} transition={{ duration: 3, repeat: Infinity }}>✨</motion.span>
+          </div>
         </motion.div>
       </motion.div>
     </section>
