@@ -1,85 +1,87 @@
-import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { Menu, X } from 'lucide-react'
 
-interface HeaderProps {
-  activeSection: string
-  setActiveSection: (section: string) => void
-}
-
-export default function Header({ activeSection, setActiveSection }: HeaderProps) {
+export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
-  const navItems = [
-    { label: 'Accueil', id: 'home' },
-    { label: 'À propos', id: 'about' },
-    { label: 'Compétences', id: 'skills' },
-    { label: 'Projets', id: 'projects' },
-    { label: 'Contact', id: 'contact' },
-  ]
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const navItems = ['Accueil', 'À propos', 'Compétences', 'Projets', 'Contact']
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-secondary/80 backdrop-blur-md border-b border-primary/20">
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-[#0a0e27]/80 backdrop-blur-xl border-b border-[#00ff88]/20'
+          : 'bg-transparent'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+        <div className="flex justify-between items-center h-20">
+          {/* Logo avec animation */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="font-serif text-2xl font-bold text-primary"
+            whileHover={{ scale: 1.1 }}
+            className="font-serif text-3xl font-bold gradient-text"
           >
-            J<span className="text-accent">awhar</span>
+            J<span className="text-[#00d4ff]">.</span>
           </motion.div>
 
-          {/* Desktop Navigation */}
+          {/* Navigation Desktop */}
           <nav className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <motion.button
-                key={item.id}
-                onClick={() => setActiveSection(item.id)}
-                className={`text-sm font-medium transition-colors ${
-                  activeSection === item.id
-                    ? 'text-primary'
-                    : 'text-accent hover:text-primary'
-                }`}
-                whileHover={{ scale: 1.05 }}
+            {navItems.map((item, i) => (
+              <motion.a
+                key={i}
+                href={`#${item.toLowerCase()}`}
+                whileHover={{ scale: 1.1, color: '#00ff88' }}
+                className="text-sm font-medium text-gray-300 hover:text-[#00ff88] transition-colors relative group"
               >
-                {item.label}
-              </motion.button>
+                {item}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#00ff88] to-[#00d4ff] group-hover:w-full transition-all duration-300" />
+              </motion.a>
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-accent"
+            className="md:hidden text-[#00ff88]"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Menu */}
         {isOpen && (
           <motion.nav
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden pb-4 space-y-2"
+            className="md:hidden pb-6 space-y-3"
           >
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => {
-                  setActiveSection(item.id)
-                  setIsOpen(false)
-                }}
-                className="block w-full text-left px-4 py-2 text-accent hover:bg-primary/10 rounded-lg transition-colors"
+            {navItems.map((item, i) => (
+              <motion.a
+                key={i}
+                href={`#${item.toLowerCase()}`}
+                onClick={() => setIsOpen(false)}
+                className="block px-4 py-2 text-gray-300 hover:text-[#00ff88] transition-colors"
+                whileHover={{ x: 10 }}
               >
-                {item.label}
-              </button>
+                {item}
+              </motion.a>
             ))}
           </motion.nav>
         )}
       </div>
-    </header>
+    </motion.header>
   )
 }
