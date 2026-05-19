@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 interface MousePos {
@@ -12,16 +13,16 @@ interface Trail {
 }
 
 export default function CursorTrail({ mousePos }: { mousePos: MousePos }) {
-  const [trail, setTrail] = React.useState<Trail[]>([])
-  const [nextId, setNextId] = React.useState(0)
+  const [trail, setTrail] = useState<Trail[]>([])
+  const [nextId, setNextId] = useState(0)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTrail((prev) => {
       const newTrail = [...prev, { id: nextId, x: mousePos.x, y: mousePos.y }]
       setNextId((p) => p + 1)
-      return newTrail.slice(-20) // Keep only last 20 points
+      return newTrail.slice(-20)
     })
-  }, [mousePos])
+  }, [mousePos, nextId])
 
   return (
     <div className="pointer-events-none fixed inset-0 z-20">
@@ -43,5 +44,3 @@ export default function CursorTrail({ mousePos }: { mousePos: MousePos }) {
     </div>
   )
 }
-
-import React from 'react'
