@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Github, ExternalLink } from 'lucide-react'
+import { Github, ExternalLink, Sparkles } from 'lucide-react'
 
 export default function ProjectsGallery() {
   const projects = [
@@ -37,7 +37,7 @@ export default function ProjectsGallery() {
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        className="font-serif text-5xl md:text-6xl font-bold gradient-text mb-20 text-center"
+        className="font-serif text-5xl md:text-6xl font-bold gradient-text mb-20 text-center animate-glow-intense"
       >
         Portfolio de Projets
       </motion.h2>
@@ -46,57 +46,70 @@ export default function ProjectsGallery() {
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: project.delay }}
-            whileHover={{ y: -20, scale: 1.02 }}
-            className="group h-full"
+            initial={{ opacity: 0, y: 50, rotate: -5 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+            transition={{ delay: project.delay, duration: 0.6 }}
+            whileHover={{ y: -30, scale: 1.05, rotate: 5 }}
+            className="group h-full cursor-pointer perspective"
           >
-            <div className="glass rounded-2xl overflow-hidden h-full flex flex-col">
-              {/* Image Area */}
-              <div className={`h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
+            <div className="glass rounded-2xl overflow-hidden h-full flex flex-col shadow-2xl hover:shadow-[0_0_60px_rgba(0,255,136,0.5)] transition-all">
+              {/* Image Area with animation */}
+              <div className={`h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden group-hover:shadow-xl transition-all`}>
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                  className="absolute inset-0 opacity-30"
+                  className="absolute inset-0"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/0" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/0 opacity-30" />
                 </motion.div>
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"
+                />
               </div>
 
               {/* Content */}
               <div className="p-8 flex flex-col flex-grow">
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:gradient-text transition-all">
+                <motion.h3
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-2xl font-bold text-white mb-3 group-hover:gradient-text transition-all"
+                >
                   {project.title}
-                </h3>
+                </motion.h3>
                 <p className="text-gray-400 mb-6 flex-grow">{project.description}</p>
 
-                {/* Tags */}
+                {/* Tags with animation */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag, i) => (
-                    <span key={i} className="text-xs px-3 py-1 bg-[#00ff88]/10 text-[#00ff88] rounded-full">
+                    <motion.span
+                      key={i}
+                      whileHover={{ scale: 1.2, rotate: 5 }}
+                      className="text-xs px-3 py-1 bg-[#00ff88]/10 text-[#00ff88] rounded-full hover:bg-[#00ff88]/30 transition-all cursor-pointer"
+                    >
                       {tag}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
 
                 {/* Links */}
                 <div className="flex gap-4 pt-4 border-t border-[#00ff88]/20">
                   <motion.a
-                    whileHover={{ scale: 1.1, color: '#00ff88' }}
+                    whileHover={{ scale: 1.2, rotate: 10, x: 5 }}
                     href={project.github}
-                    className="flex items-center gap-2 text-gray-400 hover:text-[#00ff88] transition-colors"
+                    className="flex items-center gap-2 text-gray-400 hover:text-[#00ff88] transition-colors group/link"
                   >
                     <Github size={18} />
-                    Code
+                    <span className="text-sm">Code</span>
                   </motion.a>
                   <motion.a
-                    whileHover={{ scale: 1.1, color: '#00d4ff' }}
+                    whileHover={{ scale: 1.2, rotate: -10, x: -5 }}
                     href={project.demo}
-                    className="flex items-center gap-2 text-gray-400 hover:text-[#00d4ff] transition-colors"
+                    className="flex items-center gap-2 text-gray-400 hover:text-[#00d4ff] transition-colors group/link"
                   >
                     <ExternalLink size={18} />
-                    Démo
+                    <span className="text-sm">Démo</span>
                   </motion.a>
                 </div>
               </div>

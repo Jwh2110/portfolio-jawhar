@@ -11,13 +11,13 @@ export default function AboutUnique() {
   ]
 
   return (
-    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-[#1a1f3a]/30 to-transparent" id="à-propos">
+    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-[#1a1f3a]/30 to-transparent relative overflow-hidden" id="à-propos">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="font-serif text-5xl md:text-6xl font-bold gradient-text mb-20 text-center"
+          className="font-serif text-5xl md:text-6xl font-bold gradient-text mb-20 text-center animate-glow-intense"
         >
           Qui suis-je vraiment ?
         </motion.h2>
@@ -30,20 +30,32 @@ export default function AboutUnique() {
             transition={{ duration: 0.8 }}
           >
             <div className="space-y-6">
-              <p className="text-lg text-gray-300 leading-relaxed">
-                Je suis un développeur passionné en formation au <span className="text-[#00ff88] font-semibold">BTS SIO</span>, avec une curiosité insatiable pour les technologies qui façonnent notre futur.
-              </p>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                Mes intérêts variés - du Liban à l'histoire fascinante des croisades - nourrissent ma créativité et façonnent une perspective unique en développement.
-              </p>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                Je crois que <span className="text-[#00d4ff] font-semibold">chaque ligne de code</span> doit être une œuvre d'art, alliant fonctionnalité et beauté visuelle.
-              </p>
+              <motion.p
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="text-lg text-gray-300 leading-relaxed"
+              >
+                Je suis un développeur passionné en formation au <span className="text-[#00ff88] font-semibold animate-neon-pulse">BTS SIO</span>, avec une curiosité insatiable pour les technologies qui façonnent notre futur.
+              </motion.p>
+              <motion.p
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+                className="text-lg text-gray-300 leading-relaxed"
+              >
+                Mes intérêts variés - du Liban à l'histoire fascinante des croisades - nourrissent ma créativité et façonnent une perspective unique.
+              </motion.p>
+              <motion.p
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                className="text-lg text-gray-300 leading-relaxed"
+              >
+                Je crois que <span className="text-[#00d4ff] font-semibold animate-color-shift">chaque ligne de code</span> doit être une œuvre d'art.
+              </motion.p>
               <motion.div
-                whileHover={{ x: 10 }}
+                whileHover={{ x: 10, rotate: 2 }}
                 className="inline-block mt-8"
               >
-                <button className="px-8 py-3 border-2 border-[#00ff88] text-[#00ff88] font-semibold rounded-lg hover:bg-[#00ff88]/10 transition-all">
+                <button className="px-8 py-3 border-2 border-[#00ff88] text-[#00ff88] font-semibold rounded-lg hover:bg-[#00ff88]/10 transition-all animate-pulse-crazy">
                   En savoir plus →
                 </button>
               </motion.div>
@@ -60,17 +72,20 @@ export default function AboutUnique() {
             {interests.map((interest, index) => (
               <motion.div
                 key={index}
-                whileHover={{ y: -10, scale: 1.05 }}
-                className="glass p-6 rounded-xl text-center cursor-pointer group"
+                whileHover={{ y: -20, scale: 1.15, rotate: 10 }}
+                whileTap={{ scale: 0.9 }}
+                animate={{ y: [0, Math.sin(index) * 10, 0] }}
+                transition={{ duration: 2 + index * 0.2, repeat: Infinity }}
+                className="glass p-6 rounded-xl text-center cursor-pointer group hover:shadow-2xl transition-all"
               >
                 <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: index * 0.1 }}
+                  animate={{ scale: [1, 1.3, 1], rotate: [0, 10, 0] }}
+                  transition={{ duration: 2 + index * 0.1, repeat: Infinity }}
                   className="text-4xl mb-3"
                 >
                   {interest.emoji}
                 </motion.div>
-                <p className="text-sm font-medium text-white group-hover:text-[#00ff88] transition-colors">
+                <p className="text-sm font-medium text-white group-hover:text-[#00ff88] transition-colors animate-wobble">
                   {interest.label}
                 </p>
               </motion.div>

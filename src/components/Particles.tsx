@@ -7,27 +7,28 @@ interface Particle {
   vy: number
   size: number
   opacity: number
+  color: string
 }
 
 export default function Particles() {
   const [particles, setParticles] = useState<Particle[]>([])
 
   useEffect(() => {
-    // Créer les particules
+    const colors = ['#00ff88', '#00d4ff', '#ff006e']
     const newParticles: Particle[] = []
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 80; i++) {
       newParticles.push({
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 2 + 1,
-        opacity: Math.random() * 0.5 + 0.2,
+        vx: (Math.random() - 0.5) * 1,
+        vy: (Math.random() - 0.5) * 1,
+        size: Math.random() * 3 + 1,
+        opacity: Math.random() * 0.7 + 0.2,
+        color: colors[Math.floor(Math.random() * colors.length)],
       })
     }
     setParticles(newParticles)
 
-    // Animation
     let animationId: number
     const animate = () => {
       setParticles((prev) =>
@@ -55,9 +56,9 @@ export default function Particles() {
             top: `${particle.y}px`,
             width: `${particle.size}px`,
             height: `${particle.size}px`,
-            background: 'radial-gradient(circle, rgba(0, 255, 136, 0.8) 0%, rgba(0, 212, 255, 0.4) 100%)',
+            background: `radial-gradient(circle, ${particle.color} 0%, transparent 100%)`,
             opacity: particle.opacity,
-            boxShadow: '0 0 10px rgba(0, 255, 136, 0.5)',
+            boxShadow: `0 0 10px ${particle.color}`,
           }}
         />
       ))}

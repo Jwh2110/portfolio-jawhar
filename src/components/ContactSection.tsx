@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Mail, Linkedin, Github, Send } from 'lucide-react'
+import { Mail, Linkedin, Github, Send, Sparkles } from 'lucide-react'
 
 export default function ContactSection() {
   return (
@@ -8,7 +8,7 @@ export default function ContactSection() {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="font-serif text-5xl md:text-6xl font-bold gradient-text mb-12 text-center"
+          className="font-serif text-5xl md:text-6xl font-bold gradient-text mb-12 text-center animate-glow-intense"
         >
           Travaillons Ensemble
         </motion.h2>
@@ -35,11 +35,11 @@ export default function ContactSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
+                whileHover={{ y: -20, scale: 1.1, rotate: 5 }}
               >
-                <div className="glass p-8 rounded-xl text-center cursor-pointer group">
+                <div className="glass p-8 rounded-xl text-center cursor-pointer group hover:shadow-2xl transition-all">
                   <motion.div
-                    animate={{ scale: [1, 1.2, 1] }}
+                    animate={{ scale: [1, 1.3, 1], rotate: [0, 20, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
                     <Icon size={40} className="mx-auto mb-4" style={{ color: contact.color }} />
@@ -63,29 +63,42 @@ export default function ContactSection() {
           className="glass p-8 rounded-2xl max-w-2xl mx-auto"
         >
           <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <input
+            <motion.input
+              whileFocus={{ scale: 1.05, boxShadow: '0 0 30px rgba(0, 255, 136, 0.5)' }}
               type="text"
               placeholder="Votre nom"
               className="w-full bg-[#0a0e27]/50 border border-[#00ff88]/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00ff88] transition-all"
             />
-            <input
+            <motion.input
+              whileFocus={{ scale: 1.05, boxShadow: '0 0 30px rgba(0, 255, 136, 0.5)' }}
               type="email"
               placeholder="Votre email"
               className="w-full bg-[#0a0e27]/50 border border-[#00ff88]/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00ff88] transition-all"
             />
           </div>
-          <textarea
+          <motion.textarea
+            whileFocus={{ scale: 1.05, boxShadow: '0 0 30px rgba(0, 255, 136, 0.5)' }}
             placeholder="Votre message..."
             rows={5}
             className="w-full bg-[#0a0e27]/50 border border-[#00ff88]/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00ff88] transition-all mb-6 resize-none"
           />
           <motion.button
-            whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(0, 255, 136, 0.5)' }}
+            whileHover={{ scale: 1.1, rotate: 2, boxShadow: '0 0 60px rgba(0, 255, 136, 0.8)' }}
             whileTap={{ scale: 0.95 }}
             className="w-full px-8 py-4 bg-gradient-to-r from-[#00ff88] to-[#00d4ff] text-[#0a0e27] font-bold rounded-lg flex items-center justify-center gap-2 hover:shadow-2xl transition-all"
           >
-            <Send size={20} />
-            Envoyer le Message
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <Send size={20} />
+            </motion.div>
+            <motion.span
+              animate={{ x: [0, 5, 0] }}
+              transition={{ duration: 1, repeat: Infinity }}
+            >
+              Envoyer
+            </motion.span>
           </motion.button>
         </motion.form>
       </div>
