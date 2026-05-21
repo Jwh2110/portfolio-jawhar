@@ -33,7 +33,7 @@ export default function ProjectsGallery() {
         whileInView={{ opacity: 1, y: 0 }}
         className="font-serif text-5xl md:text-6xl font-bold mb-20 text-center"
       >
-        Projets
+        <span className="text-[#ed2939]">Pro</span><span className="text-[#0b5c3d]">jets</span>
       </motion.h2>
 
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -46,32 +46,32 @@ export default function ProjectsGallery() {
             whileHover={{ y: -10 }}
             className="group h-full"
           >
-            <div className="glass rounded-lg overflow-hidden h-full flex flex-col p-8">
+            <div className="glass rounded-lg overflow-hidden h-full flex flex-col p-8 border-[#ed2939]/10 hover:border-[#ed2939]/30 transition-colors">
               <div className="mb-6 flex items-start justify-between">
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#d4af37] transition-colors">
+                  <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#ed2939] transition-colors">
                     {project.title}
                   </h3>
                   <p className="text-gray-500 text-sm">{project.description}</p>
                 </div>
                 <motion.div whileHover={{ rotate: 45, scale: 1.2 }}>
-                  <ArrowUpRight size={20} className="text-[#d4af37]" />
+                  <ArrowUpRight size={20} className="text-[#ed2939]" />
                 </motion.div>
               </div>
 
               <div className="flex flex-wrap gap-2 mb-6 mt-auto">
                 {project.tags.map((tag, i) => (
-                  <span key={i} className="text-xs px-3 py-1 bg-[#d4af37]/10 text-[#d4af37] rounded-full">
+                  <span key={i} className="text-xs px-3 py-1 bg-gradient-to-r from-[#ed2939]/10 to-[#0b5c3d]/10 text-[#d4a574] rounded-full">
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <div className="flex gap-4 pt-6 border-t border-[#d4af37]/10">
+              <div className="flex gap-4 pt-6 border-t border-[#ed2939]/10">
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   href={project.github}
-                  className="flex items-center gap-2 text-gray-400 hover:text-[#d4af37] transition-colors"
+                  className="flex items-center gap-2 text-gray-400 hover:text-[#ed2939] transition-colors"
                 >
                   <Github size={18} />
                   <span className="text-sm">Code</span>
@@ -79,7 +79,7 @@ export default function ProjectsGallery() {
                 <motion.a
                   whileHover={{ scale: 1.1 }}
                   href={project.demo}
-                  className="flex items-center gap-2 text-gray-400 hover:text-[#d4af37] transition-colors"
+                  className="flex items-center gap-2 text-gray-400 hover:text-[#0b5c3d] transition-colors"
                 >
                   <ExternalLink size={18} />
                   <span className="text-sm">Démo</span>

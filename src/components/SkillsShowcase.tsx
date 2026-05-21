@@ -39,7 +39,7 @@ export default function SkillsShowcase() {
         whileInView={{ opacity: 1, y: 0 }}
         className="font-serif text-5xl md:text-6xl font-bold mb-20 text-center"
       >
-        Compétences
+        <span className="text-[#ed2939]">Compé</span><span className="text-[#0b5c3d]">tences</span>
       </motion.h2>
 
       <div className="flex justify-center gap-4 mb-16 flex-wrap">
@@ -53,8 +53,8 @@ export default function SkillsShowcase() {
               whileTap={{ scale: 0.95 }}
               className={`flex items-center gap-2 px-8 py-3 rounded-lg font-semibold transition-all ${
                 activeCategory === cat.key
-                  ? 'bg-[#d4af37] text-[#0f1419] shadow-lg'
-                  : 'glass text-gray-400 hover:text-[#d4af37]'
+                  ? 'bg-gradient-to-r from-[#ed2939] to-[#0b5c3d] text-white shadow-lg shadow-[#ed2939]/30'
+                  : 'glass text-gray-400 hover:text-[#ed2939] border-[#ed2939]/10'
               }`}
             >
               <Icon size={20} />
@@ -81,19 +81,19 @@ export default function SkillsShowcase() {
               whileHover={{ x: 10 }}
               className="group"
             >
-              <div className="glass p-8 rounded-lg">
+              <div className="glass p-8 rounded-lg border-[#ed2939]/5 hover:border-[#ed2939]/30 transition-colors">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-lg font-semibold text-white group-hover:text-[#d4af37] transition-colors">
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#ed2939] transition-colors">
                     {skill.name}
                   </h3>
-                  <span className="text-sm text-[#d4af37]">{skill.level}%</span>
+                  <span className="text-sm text-[#0b5c3d] font-semibold">{skill.level}%</span>
                 </div>
-                <div className="w-full bg-gray-800/50 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-gradient-to-r from-[#ed2939]/10 to-[#0b5c3d]/10 rounded-full h-2 overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: `${skill.level}%` }}
                     transition={{ duration: 1, delay: 0.2 }}
-                    className="h-full bg-gradient-to-r from-[#d4af37] to-[#e5c158] rounded-full"
+                    className="h-full bg-gradient-to-r from-[#ed2939] to-[#d4a574] rounded-full"
                   />
                 </div>
               </div>
