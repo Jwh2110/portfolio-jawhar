@@ -9,11 +9,12 @@
 }
 
 :root {
-  --color-cedar: #0b5c3d;
-  --color-red: #ed2939;
-  --color-gold: #d4a574;
-  --color-dark: #0a0e1a;
-  --color-white: #f5f5f5;
+  --color-sky-blue: #87ceeb;
+  --color-sunset-orange: #ff8c42;
+  --color-sunset-pink: #ff6b9d;
+  --color-stone: #8b7355;
+  --color-cedar-green: #1b4d2e;
+  --color-gold-ancient: #d4a574;
 }
 
 html {
@@ -22,7 +23,7 @@ html {
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background: linear-gradient(135deg, #0a0e1a 0%, #1a0f0f 50%, #0a1a15 100%);
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
   color: #e0e0e0;
   overflow-x: hidden;
   background-attachment: fixed;
@@ -39,25 +40,68 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a0f0f;
+  background: #1a1a2e;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #ed2939 0%, #0b5c3d 100%);
+  background: linear-gradient(180deg, #ff8c42 0%, #87ceeb 100%);
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #ff3a4f 0%, #0d7a4d 100%);
+/* Animations cinématiques */
+@keyframes floatMountain {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
 
-/* Animations exceptionnelles */
-@keyframes cedarPulse {
+@keyframes sunsetGlow {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 140, 66, 0.2)) brightness(1); }
+  50% { filter: drop-shadow(0 0 60px rgba(255, 107, 157, 0.4)) brightness(1.1); }
+}
+
+@keyframes cedarSway {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(2deg) scale(1.02); }
+}
+
+@keyframes stoneAppear {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes skyShimmer {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes harissaPulse {
   0%, 100% {
-    filter: drop-shadow(0 0 20px rgba(13, 122, 77, 0.3)) brightness(1);
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1)) brightness(1);
   }
   50% {
-    filter: drop-shadow(0 0 60px rgba(13, 122, 77, 0.8)) brightness(1.2);
+    filter: drop-shadow(0 0 40px rgba(255, 140, 66, 0.3)) brightness(1.15);
+  }
+}
+
+@keyframes parallaxMove {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-50px); }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -72,96 +116,58 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@keyframes glowSubtle {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(212, 165, 116, 0.1);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(212, 165, 116, 0.3);
-  }
+@keyframes glow-landscape {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 140, 66, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(255, 140, 66, 0.3); }
 }
 
-@keyframes floatSubtle {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
+.animate-float-mountain { animation: floatMountain 4s ease-in-out infinite; }
+.animate-sunset-glow { animation: sunsetGlow 3s ease-in-out infinite; }
+.animate-cedar-sway { animation: cedarSway 4s ease-in-out infinite; }
+.animate-stone-appear { animation: stoneAppear 0.8s ease-out; }
+.animate-sky-shimmer { animation: skyShimmer 2s ease-in-out infinite; }
+.animate-harissa-pulse { animation: harissaPulse 3s ease-in-out infinite; }
+.animate-glow-landscape { animation: glow-landscape 2s ease-in-out infinite; }
 
-@keyframes shimmerGold {
-  0% { background-position: -1000px 0; }
-  100% { background-position: 1000px 0; }
-}
-
-@keyframes arabicPattern {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes pulseRed {
-  0%, 100% {
-    box-shadow: 0 0 10px rgba(237, 41, 57, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(237, 41, 57, 0.5);
-  }
-}
-
-@keyframes slideInCedar {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.animate-cedar-pulse { animation: cedarPulse 3s ease-in-out infinite; }
-.animate-fadeInUp { animation: fadeInUp 0.8s ease-out; }
-.animate-glow-subtle { animation: glowSubtle 2s ease-in-out infinite; }
-.animate-float-subtle { animation: floatSubtle 3s ease-in-out infinite; }
-.animate-shimmer-gold { background: linear-gradient(90deg, transparent 0%, rgba(212, 165, 116, 0.2) 50%, transparent 100%); background-size: 1000px 100%; animation: shimmerGold 3s infinite; }
-.animate-pulse-red { animation: pulseRed 2s ease-in-out infinite; }
-.animate-slide-in { animation: slideInCedar 0.8s ease-out; }
-
-/* Glass effect - Levantine */
+/* Glass effect Lebanese */
 .glass {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(212, 165, 116, 0.15);
+  border: 1px solid rgba(255, 140, 66, 0.15);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
 }
 
 .glass:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(212, 165, 116, 0.3);
-  box-shadow: 0 8px 32px rgba(237, 41, 57, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 140, 66, 0.3);
+  box-shadow: 0 8px 32px rgba(255, 140, 66, 0.15);
 }
 
-/* Gradient text - Lebanese colors */
-.gradient-text {
-  background: linear-gradient(135deg, #ed2939 0%, #d4a574 50%, #0b5c3d 100%);
+/* Landscape gradient text */
+.gradient-landscape {
+  background: linear-gradient(135deg, #87ceeb 0%, #ff8c42 50%, #ff6b9d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.cedar-accent {
-  color: #0b5c3d;
+/* Stone texture */
+.stone-texture {
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(139, 115, 85, 0.1) 2px, rgba(139, 115, 85, 0.1) 4px),
+    repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(139, 115, 85, 0.1) 2px, rgba(139, 115, 85, 0.1) 4px);
 }
 
-.red-accent {
-  color: #ed2939;
+/* Sky colors */
+.sky-gradient {
+  background: linear-gradient(180deg, #87ceeb 0%, #ff8c42 50%, #ff6b9d 100%);
 }
 
-.gold-accent {
-  color: #d4a574;
-}
+.cedar-green { color: #1b4d2e; }
+.sunset-orange { color: #ff8c42; }
+.sky-blue { color: #87ceeb; }
+.sunset-pink { color: #ff6b9d; }
 
 .content {
   position: relative;
@@ -169,46 +175,41 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::selection {
-  background: #ed2939;
-  color: #f5f5f5;
+  background: #ff8c42;
+  color: #fff;
 }
 
 ::-moz-selection {
-  background: #ed2939;
-  color: #f5f5f5;
+  background: #ff8c42;
+  color: #fff;
 }
 
-/* Arabic patterns */
-.pattern-arabian {
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 35px,
-    rgba(13, 122, 77, 0.05) 35px,
-    rgba(13, 122, 77, 0.05) 70px
-  ),
-  repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 35px,
-    rgba(237, 41, 57, 0.05) 35px,
-    rgba(237, 41, 57, 0.05) 70px
-  );
-}
-
-/* Transition smooth */
 .transition-smooth {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Cedar SVG styling */
-.cedar-icon {
-  filter: drop-shadow(0 0 10px rgba(13, 122, 77, 0.3));
+/* Mountain silhouette */
+.mountain {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(to right, #2c1810 0%, #4a2c1a 25%, #3d2817 50%, #4a2c1a 75%, #2c1810 100%);
+  clip-path: polygon(0% 100%, 10% 70%, 20% 50%, 30% 40%, 40% 60%, 50% 20%, 60% 50%, 70% 40%, 80% 60%, 90% 45%, 100% 70%, 100% 100%);
 }
 
-/* Gold shimmer */
-.shimmer-gold {
-  background: linear-gradient(90deg, #d4a574 0%, #e5c158 50%, #d4a574 100%);
-  background-size: 200% 100%;
-  animation: shimmerGold 3s infinite;
+/* Ancient columns */
+.ancient-column {
+  background: linear-gradient(90deg, #8b7355 0%, #a0826d 50%, #8b7355 100%);
+  box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.3), inset 2px 0 4px rgba(255, 255, 255, 0.1);
+}
+
+/* Sky animation */
+.animated-sky {
+  background: linear-gradient(180deg, 
+    #87ceeb 0%,
+    #ffb366 25%,
+    #ff8c42 50%,
+    #ff6b9d 75%,
+    #5b3a9d 100%);
+  animation: skyShimmer 15s ease-in-out infinite;
 }
